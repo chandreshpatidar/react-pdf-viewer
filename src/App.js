@@ -14,6 +14,18 @@ function App() {
     setNumPages(numPages);
   };
 
+  const previousPage = () => {
+    if (pageNumber > 1) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (pageNumber < numPages) {
+      setPageNumber(pageNumber + 1);
+    }
+  };
+
   return (
     <div>
       <h2>Showing PDF using pdf-react</h2>
@@ -28,10 +40,23 @@ function App() {
           renderTextLayer={false}
         />
       </Document>
-
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
+      <div style={{ width: window?.innerWidth / 1.9 }}>
+        <button
+          disabled={pageNumber === 1}
+          onClick={previousPage}
+        >
+          Previous
+        </button>
+        <p>
+          Page {pageNumber} of {numPages}
+        </p>
+        <button
+          disabled={pageNumber === numPages}
+          onClick={nextPage}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
