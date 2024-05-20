@@ -27,20 +27,25 @@ function App() {
   };
 
   return (
-    <div>
+    <div className='container'>
       <h2>Showing PDF using pdf-react</h2>
       <Document
         file={pdfFile}
         onLoadSuccess={onDocumentLoadSuccess}
       >
-        <Page
-          pageNumber={pageNumber}
-          width={window?.innerWidth / 1.9}
-          renderAnnotationLayer={false}
-          renderTextLayer={false}
-        />
+        <div className='pageWrapper'>
+          <Page
+            pageNumber={pageNumber}
+            width={window?.innerWidth / 1.9}
+            renderAnnotationLayer={false}
+            renderTextLayer={false}
+          />
+        </div>
       </Document>
-      <div style={{ width: window?.innerWidth / 1.9 }}>
+      <div
+        className='footer'
+        style={{ width: window?.innerWidth / 1.9 }}
+      >
         <button
           disabled={pageNumber === 1}
           onClick={previousPage}
